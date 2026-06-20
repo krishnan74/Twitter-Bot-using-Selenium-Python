@@ -1,4 +1,6 @@
 import time
+from random import randint
+import datetime
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver import ActionChains
@@ -26,6 +28,15 @@ class Twitterbot:
 		options = ChromeOptions()
 		options.add_argument("--start-maximized")
 		options.add_experimental_option("excludeSwitches", ["enable-automation"])
+
+		
+
+		proxy_list = [
+			'http://Username:Password@us-ca.proxymesh.com:31280',
+			'http://Username:Password@85.237.57.198:21000',
+			'http://Username:Password@85.237.57.198:22000',
+			'http://Username:Password@85.237.57.198:23000',
+						]
 
 		proxy_address = "us-ca.proxymesh.com:31280"
 		options.add_argument(f"--proxy-server={proxy_address}")
@@ -91,10 +102,12 @@ class Twitterbot:
 				except Exception as e:
 					return e
 
-		
-			return top_5_trending_topics
+			end_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+			return top_5_trending_topics, end_time
 
 		except Exception as e:
 			return e
+		
+		
 
 
